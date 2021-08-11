@@ -117,6 +117,3 @@ def main(treding_topics):
 
 if __name__ == "__main__":
     main(treding_topics)
-
-if not os.path.exists(file_path):
-                os.makedirs(file_path)
