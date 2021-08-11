@@ -29,19 +29,24 @@ import pandas as pd
 
 """## 2. Api keys and tokens"""
 
-api_key = 'bfGWM7G7WylwHnayWAsv1mmHS'
-api_secret = 'jELrN8U7agcSlDw0k4nWilRiO2etj0DGSEwkWlTGI4wWqCBlVZ'
+def authenticate_with_secrets(secret_filepath):
+    secret_file = open(secret_filepath)
+    secret_data = json.load(secret_file)
+    CONSUMER_KEY = secret_data["API_KEY"]
+    CONSUMER_SECRET = secret_data["API_SECRET"]
+    ACCESS_TOKEN = secret_data["ACCESS_TOKEN"]
+    ACCESS_TOKEN_SECRET = secret_data["ACCESS_SECRET"]
+    secret_file.close()
 
-access_token = '1170647549520121856-hdfu8cmphlXjl5acd21i7rUCf36HCS'
-access_token_secret = 'Llpcdz1vkxhbpbzhAYmZILuG5MlgtxGl9la0J4mKUSNTy'
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+    api = tweepy.API(auth)
 
-"""## 3. Authorization and Authentication"""
-
-auth = tweepy.OAuthHandler(api_key, api_secret)
-auth.set_access_token(access_token, access_token_secret)
-api = tweepy.API(auth)
+    return api
 
 """## 4. Collecting trending topics"""
+
+def trending_topics(api, )
 
 if __name__ == "__main__":
     #Avalible locations
