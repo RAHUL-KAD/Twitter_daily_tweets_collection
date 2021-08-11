@@ -74,7 +74,7 @@ def saving_trending_topics(json_file_path):
     trending_topics = []
     for i in range(len(json_data)):
         if json_data[i]['name']:
-            trending_topics.append(json_data[i]['name])
+            trending_topics.append(json_data[i]['name'])
                                                 
     return trending_topics
                                                
