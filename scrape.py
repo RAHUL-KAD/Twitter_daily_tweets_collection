@@ -91,7 +91,7 @@ def process_raw_tweet(tweet):
     processed_tweet['created_at'] = tweet.created_at
     return processed_tweet
 
-def upload_tweets(tweets):
+def upload_tweets(tweets, file_path):
     df = pd.DataFrame(tweets)
     if not os.path.isfile(file_path):
         return df.to_csv(file_path)
