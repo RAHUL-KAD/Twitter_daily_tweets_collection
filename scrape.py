@@ -29,14 +29,11 @@ import pandas as pd
 
 """## 2. Api keys and tokens"""
 
-def authenticate_with_secrets(secret_filepath):
-    secret_file = open(secret_filepath)
-    secret_data = json.load(secret_file)
-    CONSUMER_KEY = secret_data["api_key"]
-    CONSUMER_SECRET = secret_data["api_secret"]
-    ACCESS_TOKEN = secret_data["access_token"]
-    ACCESS_TOKEN_SECRET = secret_data["access_token_secret"]
-    secret_file.close()
+def authenticate_with_secrets():
+    CONSUMER_KEY = 'bfGWM7G7WylwHnayWAsv1mmHS'
+    CONSUMER_SECRET = 'jELrN8U7agcSlDw0k4nWilRiO2etj0DGSEwkWlTGI4wWqCBlVZ'
+    ACCESS_TOKEN = '1170647549520121856-hdfu8cmphlXjl5acd21i7rUCf36HCS'
+    ACCESS_TOKEN_SECRET = 'Llpcdz1vkxhbpbzhAYmZILuG5MlgtxGl9la0J4mKUSNTy'
 
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
@@ -102,7 +99,7 @@ def upload_tweets(tweets):
         return df.to_csv(file_path, mode='a', header=False)
 
 def main():
-    api = authenticate_with_secrets('secrets.json')
+    api = authenticate_with_secrets()
     file_path = trending_topics(api)                                            
     treding_topics = saving_trending_topics(file_path)
     today_date = datetime.date.today()
