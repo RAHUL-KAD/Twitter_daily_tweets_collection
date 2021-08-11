@@ -102,7 +102,7 @@ def upload_tweets(tweets):
         return df.to_csv(file_path, mode='a', header=False)
 
 def main():
-    api = authenticate_with_secrets('/home/runner/secrets/secrets.json')
+    api = authenticate_with_secrets('secrets.json')
     file_path = trending_topics(api)                                            
     treding_topics = saving_trending_topics(file_path)
     today_date = datetime.date.today()
