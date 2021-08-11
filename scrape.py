@@ -51,7 +51,17 @@ def trending_topics(api):
     loc = api.trends_available()
     # writing a JSON file that has the available trends around the world
     with open("avalible_locs.json", "w") as wp:
-        wp.write(json.dumps(loc, indent=1))
+        return wp.write(json.dumps(loc, indent=1))
+        
+        
+        
+def get_last_tweet_ids():
+    with open("avalible_locs.json", "r") as file:
+        return json.load(file)
+        
+def update_last_tweet_ids(last_tweet_ids):
+    with open("avalible_locs.json", "w") as file:
+        json.dump(last_tweet_ids, file)
         
         
 """# Saving trending topics """
@@ -87,32 +97,30 @@ def process_raw_tweet(tweet):
     return processed_tweet
 
 def upload_tweets(tweets):
-    today_date = datetime.date.today()
-    file_path = "data/{}/data.csv".format(today_date)
-    df = pd.DataFrame.from_dict(tweets, orient='index')
+    df = pd.DataFrame(tweets)
     if not os.path.isfile(file_path):
-        file = open(file_path, "w+", encoding='utf-8')
-        return df.to_csv(file)
+        return df.to_csv(file_path)
     else: 
         return df.to_csv(file_path, mode='a', header=False)
 
-def main(treding_topics):
-    treding_topics = ['Worldwide','Winnipeg','Ottawa','Quebec','Montreal']
+def main():
+    api = authenticate_with_secrets('/home/runner/secrets/secrets.json')
+    file_path = trending_topics(api)                                            
+    treding_topics = saving_trending_topics(file_path)
     today_date = datetime.date.today()
-    processed_tweets = []
-    
+    last_tweet_ids = get_last_tweet_ids()                                            
+                                                
     for topic in treding_topics:
-        file_path = "data/{}/{}/data.csv".format(today_date, topic)
+        file_path = "data/" + today_date + topic + "/data.csv"
+        processed_tweets = []
         tweets = trending_tweets(api, topic)
-        
         if tweets:
             for tweet in tweets:
-                processed_tweets = process_raw_tweet(tweet)
-            df = pd.DataFrame.from_dict(processed_tweets, orient='index')
-            if not os.path.exists(file_path):
-                os.makedirs(file_path)
-            else:
-                return df.to_csv(file_path, mode='a', header=False)
-
+                processed_tweet = process_raw_tweet(tweet)
+                processed_tweets.append(processed_tweet)
+            upload_tweets(processed_tweets, file_path)
+    update_last_tweet_ids(last_tweet_ids)
+                                                
+                                                
 if __name__ == "__main__":
-    main(treding_topics)
+    main()
