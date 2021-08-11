@@ -103,7 +103,7 @@ def main(treding_topics):
     processed_tweets = []
     
     for topic in treding_topics:
-        file_path = "data/{}/{}/data.csv".format(tody_date, topic)
+        file_path = "data/{}/{}/data.csv".format(today_date, topic)
         tweets = trending_tweets(api, topic)
         
         if tweets:
