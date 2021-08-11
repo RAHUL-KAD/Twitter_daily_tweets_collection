@@ -107,7 +107,7 @@ def main():
     last_tweet_ids = get_last_tweet_ids()                                            
                                                 
     for topic in treding_topics:
-        file_path = 'data/' + str(today_date) '/' + topic + '/data.csv'
+        file_path = 'data/' + str(today_date) + '/' + topic + '/data.csv'
         processed_tweets = []
         tweets = trending_tweets(api, topic)
         if tweets:
