@@ -33,8 +33,8 @@ jobs:
 
       - name: Commit data to repo.
         run: |
-          git config --global user.email "joshkraft757@gmail.com"
-          git config --global user.name "Josh Kraft"
+          git config --global user.email "kadamrahulj0909@gmail.com"
+          git config --global user.name "Rahul kadam"
           git add -A
           timestamp=$(date -u)
           git commit -m "Latest data: ${timestamp}" || exit 0
