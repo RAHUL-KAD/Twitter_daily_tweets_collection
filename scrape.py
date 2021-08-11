@@ -93,7 +93,8 @@ def process_raw_tweet(tweet):
 
 def upload_tweets(tweets, file_path):
     df = pd.DataFrame(tweets)
-    if not os.path.isfile(file_path):
+    if not os.path.exists(file_path):
+        os.makedirs(file_path)
         return df.to_csv(file_path)
     else: 
         return df.to_csv(file_path, mode='a', header=False)
@@ -106,7 +107,7 @@ def main():
     last_tweet_ids = get_last_tweet_ids()                                            
                                                 
     for topic in treding_topics:
-        file_path = "data/" + str(today_date) + topic + "/data.csv"
+        file_path = 'data/' + `"%Y%m%d/"+topic` + '/' + 'data.csv'
         processed_tweets = []
         tweets = trending_tweets(api, topic)
         if tweets:
