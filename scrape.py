@@ -32,10 +32,10 @@ import pandas as pd
 def authenticate_with_secrets(secret_filepath):
     secret_file = open(secret_filepath)
     secret_data = json.load(secret_file)
-    CONSUMER_KEY = secret_data["API_KEY"]
-    CONSUMER_SECRET = secret_data["API_SECRET"]
-    ACCESS_TOKEN = secret_data["ACCESS_TOKEN"]
-    ACCESS_TOKEN_SECRET = secret_data["ACCESS_SECRET"]
+    CONSUMER_KEY = secret_data["api_key"]
+    CONSUMER_SECRET = secret_data["api_secret"]
+    ACCESS_TOKEN = secret_data["access_token"]
+    ACCESS_TOKEN_SECRET = secret_data["access_token_secret"]
     secret_file.close()
 
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
