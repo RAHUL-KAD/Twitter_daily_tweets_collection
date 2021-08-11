@@ -46,34 +46,28 @@ def authenticate_with_secrets(secret_filepath):
 
 """## 4. Collecting trending topics"""
 
-def trending_topics(api, )
-
-if __name__ == "__main__":
+def trending_topics(api):
     #Avalible locations
     loc = api.trends_available()
     # writing a JSON file that has the available trends around the world
     with open("avalible_locs.json", "w") as wp:
         wp.write(json.dumps(loc, indent=1))
+        
+        
+"""# Saving trending topics """
 
-"""# Saving trending topics
-
-## 1. Loding json data
-"""
-
-file = open('avalible_locs.json')
-json_data = json.load(file)
-
-json_data[:20]
-
-"""## 2. saving trending topics"""
-
-treding_topics= []
-for i in range(len(json_data)):
-    if json_data[i]['name']:
-        treding_topics.append(json_data[i]['name'])
-
-treding_topics[:20]
-
+def saving_trending_topics(json_file_path):
+    #loding the dataset
+    file = open(json_file_path)
+    json_data = json.load(file)
+    #saving the trending topics
+    trending_topics = []
+    for i in range(len(json_data)):
+        if json_data[i]['name']:
+            trending_topics.append(json_data[i]['name])
+                                                
+    return trending_topics
+                                               
 """# Collecting trending tweets"""
 
 def trending_tweets(api, topics):
