@@ -101,7 +101,7 @@ def upload_tweets(tweets):
 def main():
     api = authenticate_with_secrets()
     file_path = trending_topics(api)                                            
-    treding_topics = saving_trending_topics(file_path)
+    treding_topics = saving_trending_topics('avalible_locs.json')
     today_date = datetime.date.today()
     last_tweet_ids = get_last_tweet_ids()                                            
                                                 
