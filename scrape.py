@@ -23,7 +23,6 @@ import tweepy
 import os
 import json
 import sys
-import geocoder
 import datetime
 import pandas as pd
 
