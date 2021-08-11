@@ -84,8 +84,6 @@ def trending_tweets(api, topics):
     tweets = api.search(q=topics, language='en')
     return tweets
 
-trending_tweets(api, "Worldwide")
-
 def process_raw_tweet(tweet):
     processed_tweet = {}
     processed_tweet['id'] = tweet.id
