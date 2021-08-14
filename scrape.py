@@ -93,7 +93,7 @@ def process_raw_tweet(tweet):
 
 def upload_tweets(tweets, file_path):
     df = pd.DataFrame(tweets)
-    if not os.path.listdir(file_path):
+    if not os.path.isfile(file_path):
         return df.to_csv(file_path)
     else: 
         return df.to_csv(file_path, mode='a', header=False)
