@@ -26,6 +26,7 @@ import json
 import sys
 import datetime
 import pandas as pd
+import random
 
 """## 2. Api keys and tokens"""
 
@@ -102,10 +103,11 @@ def main():
     api = authenticate_with_secrets()
     file_path = trending_topics(api)                                            
     treding_topics = saving_trending_topics('avalible_locs.json')
+    random.shuffle(treding_topics)
     today_date = datetime.date.today()
     last_tweet_ids = get_last_tweet_ids()                                            
-                                                
-    for topic in treding_topics[20].sample():
+                                               
+    for topic in treding_topics[:10]:
         file_path = 'data/data.csv'
         processed_tweets = []
         tweets = trending_tweets(api, topic)
