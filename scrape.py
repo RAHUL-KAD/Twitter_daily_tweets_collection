@@ -79,12 +79,13 @@ def saving_trending_topics(json_file_path):
 """# Collecting trending tweets"""
 
 def trending_tweets(api, topics):
-    tweets = api.search(q=topics, language='en', count=500)
+    tweets = api.search(q=topics, language='en', count=5000)
     return tweets
 
-def process_raw_tweet(tweet):
+def process_raw_tweet(tweet, topic):
     processed_tweet = {}
     processed_tweet['id'] = tweet.id
+    processed_tweet['trending_topic] = topic
     processed_tweet['username'] = tweet.user.screen_name
     processed_tweet['tweet_text'] = tweet.text
     processed_tweet['retweets'] = tweet.retweet_count
@@ -113,7 +114,7 @@ def main():
         tweets = trending_tweets(api, topic)
         if tweets:
             for tweet in tweets:
-                processed_tweet = process_raw_tweet(tweet)
+                processed_tweet = process_raw_tweet(tweet, topic)
                 processed_tweets.append(processed_tweet)
             upload_tweets(processed_tweets, file_path)
     update_last_tweet_ids(last_tweet_ids)
