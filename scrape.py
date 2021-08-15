@@ -78,7 +78,7 @@ def saving_trending_topics(json_file_path):
 """# Collecting trending tweets"""
 
 def trending_tweets(api, topics):
-    tweets = api.search(q=topics, language='en')
+    tweets = api.search(q=topics, language='en', count=500)
     return tweets
 
 def process_raw_tweet(tweet):
@@ -105,7 +105,7 @@ def main():
     today_date = datetime.date.today()
     last_tweet_ids = get_last_tweet_ids()                                            
                                                 
-    for topic in treding_topics:
+    for topic in treding_topics[20].sample():
         file_path = 'data/data.csv'
         processed_tweets = []
         tweets = trending_tweets(api, topic)
