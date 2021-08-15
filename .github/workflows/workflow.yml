@@ -9,6 +9,8 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  schedule: # Event that triggers workflow.
+    - cron:  '30 5,17 * * *'
 
 jobs:
   collect-data-job:
