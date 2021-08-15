@@ -84,8 +84,7 @@ def trending_tweets(api, topics):
 
 def process_raw_tweet(tweet, topic):
     processed_tweet = {}
-    processed_tweet['id'] = tweet.id
-    processed_tweet['trending_topic] = topic
+    processed_tweet['id'] = topic
     processed_tweet['username'] = tweet.user.screen_name
     processed_tweet['tweet_text'] = tweet.text
     processed_tweet['retweets'] = tweet.retweet_count
